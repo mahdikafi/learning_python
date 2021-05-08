@@ -1,17 +1,21 @@
-with open("Python.txt") as file:
-    content = file.readlines()[2]
-    print(content)
-    char_count = 0
-    word_count = 0
-    line_count = 0
-    for char in content:
-        char_count += 1
-        if char == ' ':
-            word_count += 1
-        if char == '\n':
-            line_count += 1
-    word_count += 1
-    line_count += 1
-    print("Characters:", char_count)
-    print("Words:", word_count)
-    print("Lines:", line_count)
+lst_1 = [1, 3, 6]
+lst_2 = [1, 5]
+lst_1.sort(reverse=True)
+lst_2.sort(reverse=True)
+print(lst_1, lst_2)
+out = []
+idx_1, idx_2 = 0, 0
+for i in range(len(lst_1) + len(lst_2)):
+    if lst_1[idx_1] >= lst_2[idx_2]:
+        out.append(lst_1[idx_1])
+        idx_1 += 1
+        if idx_1 == len(lst_1):
+            out.extend(lst_2[idx_2:])
+            break
+    else:
+        out.append(lst_2[idx_2])
+        idx_2 += 1
+        if idx_2 == len(lst_2):
+            out.extend(lst_1[idx_1:])
+            break
+print(out)
